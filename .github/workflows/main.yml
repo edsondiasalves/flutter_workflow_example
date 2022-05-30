@@ -13,6 +13,7 @@ jobs:
         with:
           flutter-version: '2.10.0'
           channel: 'stable'
+      - run: flutter build apk
 
       - name: Install dependencies
         run: flutter pub get
@@ -31,3 +32,9 @@ jobs:
         with:
           api-level: 29
           script: flutter test integration_test
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
