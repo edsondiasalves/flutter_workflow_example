@@ -25,3 +25,9 @@ jobs:
         with:
           token: ${{secrets.CODECOV_TOKEN}}
           file: coverage/lcov.info
+
+      - name: Run integration tests
+        uses: reactivecircus/android-emulator-runner@v1
+        with:
+          api-level: 29
+          script: flutter test integration_test
