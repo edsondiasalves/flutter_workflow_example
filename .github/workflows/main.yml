@@ -31,10 +31,16 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v1
         with:
           api-level: 29
-          script: flutter test integration_test
+          script: flutter drive --driver=test_driver/main_test.dart --target integration_test/app_test.dart
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
+
+      - name: Upload Screenshoots
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test result screenshots
+          path: screenshots/*.png
